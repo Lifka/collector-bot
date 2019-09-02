@@ -10,6 +10,12 @@ PUT _ingest/pipeline/collector-bot-ingest
   "description": "Ingest pipeline for collector-bot logs",
   "processors": [
     {
+      "set": {
+        "field": "_type",
+        "value": "_doc"
+      }
+    },
+    {
       "dissect": {
         "field": "message",
         "pattern": "%{@timestamp} - %{level} - %{user} - %{userId} - %{action} - %{messageType} - %{full_log} - %{group}",
